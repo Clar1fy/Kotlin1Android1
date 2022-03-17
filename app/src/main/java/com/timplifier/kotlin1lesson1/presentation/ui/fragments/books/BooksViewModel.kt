@@ -10,14 +10,5 @@ class BooksViewModel : ViewModel() {
         return BooksClient().getBooks()
     }
 
-    fun getTitle(bookModel: BookModel): String {
-        return bookModel.title
-
-    }
-
-    fun getDescription(bookModel: BookModel): String {
-        return bookModel.description
-    }
-
 
 }
