@@ -21,7 +21,8 @@
         android:layout_width="144dp"
         android:layout_height="144dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/for_book_s_image" />
 
 
 </LinearLayout>
