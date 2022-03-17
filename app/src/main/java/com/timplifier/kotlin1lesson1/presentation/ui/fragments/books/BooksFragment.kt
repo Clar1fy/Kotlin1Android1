@@ -14,7 +14,7 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>(
 ) {
     override val binding: FragmentBooksBinding by viewBinding(FragmentBooksBinding::bind)
     private val viewModel: BooksViewModel by activityViewModels()
-    private val adapter = BooksAdapter { BookModel, position -> onClick(BookModel, position) }
+    private val adapter = BooksAdapter { BookModel -> onClick(BookModel) }
 
     override fun setupViews() {
         initAdapter()
@@ -26,10 +26,11 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>(
 
     }
 
-    private fun onClick(model: BookModel, position: Int) {
+    private fun onClick(model: BookModel) {
+        val description = model.description
         findNavController().navigate(
             BooksFragmentDirections.actionBooksFragmentToBooksDetailsFragment(
-                model
+                description
             )
         )
 

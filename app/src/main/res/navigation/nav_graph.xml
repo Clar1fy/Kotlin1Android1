@@ -20,9 +20,6 @@
         android:name="com.timplifier.kotlin1lesson1.presentation.ui.fragments.books.BooksDetailsFragment"
         android:label="fragment_books_details"
         tools:layout="@layout/fragment_books_details">
-
-        <argument
-            android:name="modelFromBooksToDetails"
-            app:argType="com.timplifier.kotlin1lesson1.domain.models.BookModel" />
+        <argument android:name="booksDescription" />
     </fragment>
 </navigation>

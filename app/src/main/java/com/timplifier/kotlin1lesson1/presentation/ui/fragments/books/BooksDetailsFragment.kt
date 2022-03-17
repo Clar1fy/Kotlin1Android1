@@ -15,10 +15,8 @@ class BooksDetailsFragment : BaseFragment<FragmentBooksDetailsBinding>(
     private val args: BooksDetailsFragmentArgs by navArgs()
 
     override fun setupViews() {
-        binding.tvTitle.text =
-            viewModel.getTitle(args.modelFromBooksToDetails)
         binding.tvDescription.text =
-            viewModel.getDescription(args.modelFromBooksToDetails)
+            args.booksDescription
     }
 
 

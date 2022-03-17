@@ -7,7 +7,7 @@ import com.timplifier.kotlin1lesson1.databinding.ItemBooksBinding
 import com.timplifier.kotlin1lesson1.domain.models.BookModel
 
 class BooksAdapter(
-    val onItemClick: (BookModel, position: Int) -> Unit
+    val onItemClick: (BookModel) -> Unit
 ) : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
     private var list: List<BookModel> = arrayListOf()
 
@@ -44,7 +44,7 @@ class BooksAdapter(
             binding.tvBooks.text = bookModel.title
             binding.imBooks.setImageResource(bookModel.image)
             binding.root.setOnClickListener {
-                onItemClick(bookModel, absoluteAdapterPosition)
+                onItemClick(bookModel)
             }
 
 
