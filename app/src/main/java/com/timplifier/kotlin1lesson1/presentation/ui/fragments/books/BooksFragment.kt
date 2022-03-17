@@ -1,6 +1,6 @@
 package com.timplifier.kotlin1lesson1.presentation.ui.fragments.books
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.kotlin1lesson1.R
@@ -13,7 +13,7 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>(
     R.layout.fragment_books
 ) {
     override val binding: FragmentBooksBinding by viewBinding(FragmentBooksBinding::bind)
-    private val viewModel: BooksViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val adapter = BooksAdapter { BookModel -> onClick(BookModel) }
 
     override fun setupViews() {
@@ -21,18 +21,14 @@ class BooksFragment : BaseFragment<FragmentBooksBinding>(
     }
 
     private fun initAdapter() {
-        adapter.setList(viewModel.getBooks())
+        adapter.setList(sharedViewModel.getBooks())
         binding.recyclerview.adapter = adapter
 
     }
 
     private fun onClick(model: BookModel) {
-        val description = model.description
-        findNavController().navigate(
-            BooksFragmentDirections.actionBooksFragmentToBooksDetailsFragment(
-                description
-            )
-        )
+        sharedViewModel.putDescription(model.description)
+        findNavController().navigate(R.id.booksDetailsFragment)
 
     }
 
