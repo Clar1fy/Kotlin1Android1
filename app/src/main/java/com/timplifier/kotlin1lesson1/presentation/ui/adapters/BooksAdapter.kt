@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.kotlin1lesson1.databinding.ItemBooksBinding
-import com.timplifier.kotlin1lesson1.domain.interfaces.OnItemClickListener
 import com.timplifier.kotlin1lesson1.domain.models.BookModel
 
 class BooksAdapter(
-    private val onItemClickListener: OnItemClickListener<BookModel>
+    val onItemClick: (BookModel, position: Int) -> Unit
 )
-
     : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
     private var list: List<BookModel> = arrayListOf()
 
@@ -34,7 +32,6 @@ class BooksAdapter(
 
     fun setList(list: List<BookModel>) {
         this.list = list
-        notifyDataSetChanged()
     }
 
 
@@ -48,7 +45,7 @@ class BooksAdapter(
             binding.tvBooks.text = bookModel.title
             binding.imBooks.setImageResource(bookModel.image)
             binding.root.setOnClickListener {
-                onItemClickListener.onClick(bookModel, absoluteAdapterPosition)
+                onItemClick(bookModel, absoluteAdapterPosition)
             }
 
 
