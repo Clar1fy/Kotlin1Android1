@@ -8,8 +8,7 @@ import com.timplifier.kotlin1lesson1.domain.models.BookModel
 
 class BooksAdapter(
     val onItemClick: (BookModel, position: Int) -> Unit
-)
-    : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
+) : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
     private var list: List<BookModel> = arrayListOf()
 
 

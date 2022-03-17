@@ -23,8 +23,6 @@ abstract class BaseFragment<Binding : ViewBinding>(@LayoutRes layoutId: Int) : F
     }
 
 
-
-
     open fun setupViews() {
 
     }
