@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.kotlin1lesson1.databinding.ItemBooksBinding
+import com.timplifier.kotlin1lesson1.domain.interfaces.OnItemClickListener
 import com.timplifier.kotlin1lesson1.domain.models.BookModel
 
 class BooksAdapter(
-    val onItemClickListener: (title: String, image: Int, position: Int) -> Unit
-
+    private val onItemClickListener: OnItemClickListener<BookModel>
 )
 
- : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
-    val list = ArrayList<BookModel>()
+    : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
+    private var list: List<BookModel> = arrayListOf()
 
 
     override fun onCreateViewHolder(
@@ -32,19 +32,23 @@ class BooksAdapter(
         holder.onBind(list[position])
     }
 
-    fun setList(list: ArrayList<BookModel>) {
-        list.addAll(list)
+    fun setList(list: List<BookModel>) {
+        this.list = list
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = list.size
 
-    inner class BooksViewHolder(val binding: ItemBooksBinding) :
+    override fun getItemCount(): Int {
+        return list.size
+    }
+
+    inner class BooksViewHolder(private val binding: ItemBooksBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(bookModel: BookModel) = with(binding) {
-            tvBooks.text = bookModel.title
-            imBooks.setImageResource(bookModel.image)
+        fun onBind(bookModel: BookModel) {
+            binding.tvBooks.text = bookModel.title
+            binding.imBooks.setImageResource(bookModel.image)
             binding.root.setOnClickListener {
-                onItemClickListener(bookModel.title, bookModel.image, absoluteAdapterPosition)
+                onItemClickListener.onClick(bookModel, absoluteAdapterPosition)
             }
 
 
@@ -52,4 +56,6 @@ class BooksAdapter(
 
 
     }
+
+
 }

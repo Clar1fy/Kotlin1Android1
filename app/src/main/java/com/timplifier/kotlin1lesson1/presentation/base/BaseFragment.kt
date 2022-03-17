@@ -14,6 +14,9 @@ abstract class BaseFragment<Binding : ViewBinding>(@LayoutRes layoutId: Int) : F
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        initAdapter()
+        initialize()
+        getArgs()
     }
 
     open fun initListeners() {
@@ -21,6 +24,11 @@ abstract class BaseFragment<Binding : ViewBinding>(@LayoutRes layoutId: Int) : F
     }
 
     open fun initAdapter() {
+
+    }
+
+
+    open fun getArgs() {
 
     }
 
