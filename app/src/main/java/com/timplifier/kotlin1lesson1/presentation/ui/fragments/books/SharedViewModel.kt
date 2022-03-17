@@ -13,9 +13,8 @@ class SharedViewModel : ViewModel() {
         return BooksClient().getBooks()
     }
 
-    fun putDescription(text: String): String {
+    fun putDescription(text: String) {
         description.value = text
-        return text
     }
 
 
